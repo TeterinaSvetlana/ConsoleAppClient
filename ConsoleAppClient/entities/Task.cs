@@ -9,14 +9,18 @@ namespace ConsoleAppClient
     public class Task
     {
         public DbAwareEntity DbAwareEntity { get; set; }
-        public string Name { get; set; }
         public string Objective { get; set; }
         public string Description { get; set; }
         public Task ParentTask { get; set; }
+        public uint ParentTaskId { get; set; }
         public User Initiator { get; set; }
+        public uint InitiatorId { get; set; }
         public User[] Assignees { get; set; }
         public DateTime Deadline { get; set; }
         public string Severity { get; set; }
         public Status Status { get; set; }
+        public uint StatusId { get; set; }
+        public Project Project { get; set; }
+        public uint ProjectId { get; set; }
     }
 }

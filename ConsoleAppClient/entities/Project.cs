@@ -9,9 +9,9 @@ namespace ConsoleAppClient
     public class Project
     {
         public DbAwareEntity DbAwareEntity { get; set; }
-        public string Name { get; set; }
         public Team Team { get; set; }
         public User Owner { get; set; }
+        public uint OwnerId { get; set; }
         public User[] Members { get; set; }
         public Task[] Tasks { get; set; }
     }

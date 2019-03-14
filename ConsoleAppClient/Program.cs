@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Windows.Forms;
 
 namespace ConsoleAppClient
 {
@@ -15,18 +16,18 @@ namespace ConsoleAppClient
         //initialize http client
         static HttpClient client = new HttpClient();
 
-        static void ShowInfo(Task task)
+        static void ShowInfo(User user)
         {
-            Console.WriteLine($"Task: {task.Name}\tDescription: " +
-                $"{task.Description}\tDeadline: {task.Deadline}");
+            Console.WriteLine($"User: {user.DbAwareEntity.Name}\tPassword: " +
+                $"{user.Password}\tUsername: {user.Username}");
         }
 
 
         // POST
-        static async Task<Uri> CreateAsync(Task task)
+        static async Task<Uri> CreateAsync(User user)
         {
             HttpResponseMessage response = await client.PostAsJsonAsync(
-                "api/tasks", task);
+                "/users", user);
             response.EnsureSuccessStatusCode();
 
             // return URI of the created resource.
@@ -35,28 +36,28 @@ namespace ConsoleAppClient
 
 
         //GET
-        static async Task<Task> GetAsync(string path)
+        static async Task<User> GetAsync(string path)
         {
-            Task task = null;
+            User user = null;
             HttpResponseMessage response = await client.GetAsync(path);
             if (response.IsSuccessStatusCode)
             {
-                task = await response.Content.ReadAsAsync<Task>();
+                user = await response.Content.ReadAsAsync<User>();
             }
-            return task;
+            return user;
         }
 
 
         //PUT 
-        static async Task<Task> UpdateAsync(Task task)
+        static async Task<User> UpdateAsync(User user)
         {
             HttpResponseMessage response = await client.PutAsJsonAsync(
-                $"api/tasks/{task.Name}", task);
+                $"/users/{user.Username}", user);
             response.EnsureSuccessStatusCode();
 
             // Deserialize the updated product from the response body.
-            task = await response.Content.ReadAsAsync<Task>();
-            return task;
+            user = await response.Content.ReadAsAsync<User>();
+            return user;
         }
 
 
@@ -64,49 +65,61 @@ namespace ConsoleAppClient
         static async Task<HttpStatusCode> DeleteAsync(string id)
         {
             HttpResponseMessage response = await client.DeleteAsync(
-                $"api/tasks/{id}");
+                $"/users/{id}");
             return response.StatusCode;
         }
         static void Main(string[] args)
         {
+            Application.Run(new StartForm());
             RunAsync().GetAwaiter().GetResult();
         }
 
         static async System.Threading.Tasks.Task RunAsync()
         {
             // Update port # in the following line.
-            client.BaseAddress = new Uri("http://localhost:8080/");
+            client.BaseAddress = new Uri(" https://dist-lab-server.herokuapp.com/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
             try
             {
-                Task task = new Task
+                DbAwareEntity dbAwareEntity = new DbAwareEntity
                 {
-                    Name = "Test",
-                    Deadline = DateTime.Today,
-                    Description = "TestTask"
+                    Id = 1,
+                    Name = "Name1",
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
+                    DeletedAt = DateTime.Now,
                 };
 
-                var url = await CreateAsync(task);
+                User user = new User
+                {
+                    Username = "Test11",
+                    Password = "123456",
+                    Position = "Position",
+                    Status = "Status",
+                    DbAwareEntity = dbAwareEntity,
+                };
+                
+                var url = await CreateAsync(user);
                 Console.WriteLine($"Created at {url}");
 
                 // Get
-                task = await GetAsync(url.PathAndQuery);
-                ShowInfo(task);
+                user = await GetAsync(url.PathAndQuery);
+                ShowInfo(user);
 
                 // Update 
-                Console.WriteLine("Updating price...");
-                task.Name = "UpdatedName";
-                await UpdateAsync(task);
+                Console.WriteLine("Updating name...");
+                user.DbAwareEntity.Name = "UpdatedName";
+                await UpdateAsync(user);
 
                 // Get the updated 
-                task = await GetAsync(url.PathAndQuery);
-                ShowInfo(task);
+                user = await GetAsync(url.PathAndQuery);
+                ShowInfo(user);
 
                 // Delete 
-                var statusCode = await DeleteAsync(task.Name);
+                var statusCode = await DeleteAsync(user.Position);
                 Console.WriteLine($"Deleted (HTTP Status = {(int)statusCode})");
 
             }

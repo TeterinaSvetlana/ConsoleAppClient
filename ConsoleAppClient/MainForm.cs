@@ -26,5 +26,12 @@ namespace ConsoleAppClient
         {
 
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            //Program.client
+            //var webClient = new WebClient();
+            //webClient.QueryString.Add("format", "json");
+        }
     }
 }

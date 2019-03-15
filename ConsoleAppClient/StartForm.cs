@@ -62,7 +62,8 @@ namespace ConsoleAppClient
 
         private void SingIn_Click(object sender, EventArgs e)
         {
-            
+            MainForm mainForm = new MainForm();
+            mainForm.Show();
         }
     }
 }

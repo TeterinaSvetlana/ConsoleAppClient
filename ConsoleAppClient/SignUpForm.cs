@@ -32,7 +32,7 @@ namespace ConsoleAppClient
             if (Password.Text == confirmPassword.Text)
             {
                 User user = new User { Username = UserNameSignUp.Text, Password = Password.Text };
-                Program.CreateAsync(user);
+                Task<Uri> url = Program.CreateAsync(user);                
 
                 this.Close();
             }

@@ -14,7 +14,7 @@ namespace ConsoleAppClient
     class Program
     {
         //initialize http client
-        static HttpClient client = new HttpClient();
+        public static HttpClient client = new HttpClient();
 
         static void ShowInfo(User user)
         {
@@ -70,17 +70,23 @@ namespace ConsoleAppClient
         }
         static void Main(string[] args)
         {
-            Application.Run(new StartForm());
-            //RunAsync().GetAwaiter().GetResult();
-        }
-
-        static async System.Threading.Tasks.Task RunAsync()
-        {
             // Update port # in the following line.
             client.BaseAddress = new Uri(" https://dist-lab-server.herokuapp.com/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
+            RunAsync().GetAwaiter().GetResult();
+            Application.Run(new StartForm());
+            
+        }
+
+        static async System.Threading.Tasks.Task RunAsync()
+        {
+            //// Update port # in the following line.
+            //client.BaseAddress = new Uri(" https://dist-lab-server.herokuapp.com/");
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(
+            //    new MediaTypeWithQualityHeaderValue("application/json"));
 
             try
             {

@@ -10,9 +10,10 @@ namespace ConsoleAppClient
     {
         public DbAwareEntity DbAwareEntity { get; set; }
         public Team Team { get; set; }
+        public uint TeamId { get; set; }
         public User Owner { get; set; }
         public uint OwnerId { get; set; }
-        public User[] Members { get; set; }
-        public Task[] Tasks { get; set; }
+        //public User[] Members { get; set; }
+        //public Task[] Tasks { get; set; }
     }
 }

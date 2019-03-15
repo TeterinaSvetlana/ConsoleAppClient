@@ -10,9 +10,7 @@ namespace ConsoleAppClient
     {
         public DbAwareEntity DbAwareEntity { get; set; }
         public string Objective { get; set; }
-        public string Description { get; set; }
-        public Task ParentTask { get; set; }
-        public uint ParentTaskId { get; set; }
+        public string Description { get; set; }        
         public User Initiator { get; set; }
         public uint InitiatorId { get; set; }
         public User[] Assignees { get; set; }
@@ -22,5 +20,6 @@ namespace ConsoleAppClient
         public uint StatusId { get; set; }
         public Project Project { get; set; }
         public uint ProjectId { get; set; }
+        public uint TaskId { get; set; }
     }
 }

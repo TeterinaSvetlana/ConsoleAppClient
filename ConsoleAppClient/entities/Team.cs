@@ -11,7 +11,7 @@ namespace ConsoleAppClient
         public DbAwareEntity DbAwareEntity { get; set; }
         public User Owner { get; set; }
         public uint OwnerId { get; set; }
-        public User[] Members { get; set; }
+        public User[] Users { get; set; }
         public uint ProjectId { get; set; }
     }
 }

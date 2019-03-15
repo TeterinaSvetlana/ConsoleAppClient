@@ -43,6 +43,8 @@
             this.UserName.Size = new System.Drawing.Size(132, 20);
             this.UserName.TabIndex = 2;
             this.UserName.Text = "Username";
+            this.UserName.Click += new System.EventHandler(this.UserName_Click);
+            this.UserName.TextChanged += new System.EventHandler(this.UserName_TextChanged);
             // 
             // Password
             // 
@@ -53,9 +55,12 @@
             this.Password.Size = new System.Drawing.Size(132, 20);
             this.Password.TabIndex = 3;
             this.Password.Text = "Password";
+            this.Password.Click += new System.EventHandler(this.Password_Click);
+            this.Password.TextChanged += new System.EventHandler(this.Password_TextChanged);
             // 
             // SingIn
             // 
+            this.SingIn.Enabled = false;
             this.SingIn.Location = new System.Drawing.Point(162, 150);
             this.SingIn.Name = "SingIn";
             this.SingIn.Size = new System.Drawing.Size(84, 24);

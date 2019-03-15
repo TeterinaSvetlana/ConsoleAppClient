@@ -24,7 +24,7 @@ namespace ConsoleAppClient
 
 
         // POST
-        static async Task<Uri> CreateAsync(User user)
+        public static async Task<Uri> CreateAsync(User user)
         {
             HttpResponseMessage response = await client.PostAsJsonAsync(
                 "/users", user);
@@ -71,7 +71,7 @@ namespace ConsoleAppClient
         static void Main(string[] args)
         {
             Application.Run(new StartForm());
-            RunAsync().GetAwaiter().GetResult();
+            //RunAsync().GetAwaiter().GetResult();
         }
 
         static async System.Threading.Tasks.Task RunAsync()

@@ -30,12 +30,13 @@
         {
             this.SingUp = new System.Windows.Forms.Button();
             this.Password = new System.Windows.Forms.TextBox();
-            this.UserName = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.UserNameSignUp = new System.Windows.Forms.TextBox();
+            this.confirmPassword = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // SingUp
             // 
+            this.SingUp.Enabled = false;
             this.SingUp.Location = new System.Drawing.Point(162, 191);
             this.SingUp.Name = "SingUp";
             this.SingUp.Size = new System.Drawing.Size(84, 24);
@@ -53,38 +54,46 @@
             this.Password.Size = new System.Drawing.Size(132, 20);
             this.Password.TabIndex = 11;
             this.Password.Text = "Password";
+            this.Password.Click += new System.EventHandler(this.Password_Click);
+            this.Password.TextChanged += new System.EventHandler(this.Password_TextChanged);
             // 
-            // UserName
+            // UserNameSignUp
             // 
-            this.UserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.UserName.ForeColor = System.Drawing.SystemColors.ActiveBorder;
-            this.UserName.Location = new System.Drawing.Point(138, 78);
-            this.UserName.Name = "UserName";
-            this.UserName.Size = new System.Drawing.Size(132, 20);
-            this.UserName.TabIndex = 10;
-            this.UserName.Text = "Username";
+            this.UserNameSignUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UserNameSignUp.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.UserNameSignUp.Location = new System.Drawing.Point(138, 78);
+            this.UserNameSignUp.Name = "UserNameSignUp";
+            this.UserNameSignUp.Size = new System.Drawing.Size(132, 20);
+            this.UserNameSignUp.TabIndex = 10;
+            this.UserNameSignUp.Text = "Username";
+            this.UserNameSignUp.Click += new System.EventHandler(this.UserName_Click);
+            this.UserNameSignUp.TextChanged += new System.EventHandler(this.UserName_TextChanged);
             // 
-            // textBox1
+            // confirmPassword
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.textBox1.Location = new System.Drawing.Point(138, 153);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(132, 20);
-            this.textBox1.TabIndex = 12;
-            this.textBox1.Text = "Confirm password";
+            this.confirmPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.confirmPassword.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.confirmPassword.Location = new System.Drawing.Point(138, 153);
+            this.confirmPassword.Name = "confirmPassword";
+            this.confirmPassword.Size = new System.Drawing.Size(132, 20);
+            this.confirmPassword.TabIndex = 12;
+            this.confirmPassword.Text = "Confirm password";
+            this.confirmPassword.Click += new System.EventHandler(this.confirmPassword_Click);
+            this.confirmPassword.TextChanged += new System.EventHandler(this.confirmPassword_TextChanged);
             // 
             // SignUpForm
             // 
+            this.AcceptButton = this.SingUp;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 298);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.confirmPassword);
             this.Controls.Add(this.Password);
-            this.Controls.Add(this.UserName);
+            this.Controls.Add(this.UserNameSignUp);
             this.Controls.Add(this.SingUp);
             this.Name = "SignUpForm";
             this.Text = "SignUpForm";
+            this.Load += new System.EventHandler(this.SignUpForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,7 +103,7 @@
 
         private System.Windows.Forms.Button SingUp;
         private System.Windows.Forms.TextBox Password;
-        private System.Windows.Forms.TextBox UserName;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox UserNameSignUp;
+        private System.Windows.Forms.TextBox confirmPassword;
     }
 }

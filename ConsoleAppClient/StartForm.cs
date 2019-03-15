@@ -27,5 +27,37 @@ namespace ConsoleAppClient
             SignUpForm signUpForm = new SignUpForm();
             signUpForm.Show();
         }
+
+        private void UserName_Click(object sender, EventArgs e)
+        {
+            UserName.Text = "";
+            UserName.Font = new Font("Arial", (float)8.25, FontStyle.Regular);
+            UserName.ForeColor = Color.Black;
+        }
+
+        private void Password_Click(object sender, EventArgs e)
+        {
+            Password.Text = "";
+            Password.Font = new Font("Arial", (float)8.25, FontStyle.Regular);
+            Password.ForeColor = Color.Black;
+        }
+
+        private void UserName_TextChanged(object sender, EventArgs e)
+        {
+            if ((UserName.Text != "") && (Password.Text != ""))
+                SingIn.Enabled = true;
+
+            if ((UserName.Text == "") || (Password.Text == ""))
+                SingIn.Enabled = false;
+        }
+
+        private void Password_TextChanged(object sender, EventArgs e)
+        {
+            if ((UserName.Text != "") && (Password.Text != ""))
+                SingIn.Enabled = true;
+
+            if ((UserName.Text == "") || (Password.Text == ""))
+                SingIn.Enabled = false;
+        }
     }
 }

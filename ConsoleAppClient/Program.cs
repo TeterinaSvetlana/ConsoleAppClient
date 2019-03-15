@@ -36,9 +36,9 @@ namespace ConsoleAppClient
 
 
         //GET
-        static async Task<User> GetAsync(string path)
+        public static async Task<User> GetAsync(string path, User user)
         {
-            User user = null;
+            //User user = null;
             HttpResponseMessage response = await client.GetAsync(path);
             if (response.IsSuccessStatusCode)
             {
@@ -106,7 +106,7 @@ namespace ConsoleAppClient
                 Console.WriteLine($"Created at {url}");
 
                 // Get
-                user = await GetAsync(url.PathAndQuery);
+                user = await GetAsync(url.PathAndQuery, user);
                 ShowInfo(user);
 
                 // Update 
@@ -115,7 +115,7 @@ namespace ConsoleAppClient
                 await UpdateAsync(user);
 
                 // Get the updated 
-                user = await GetAsync(url.PathAndQuery);
+                user = await GetAsync(url.PathAndQuery, user);
                 ShowInfo(user);
 
                 // Delete 

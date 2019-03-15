@@ -59,5 +59,10 @@ namespace ConsoleAppClient
             if ((UserName.Text == "") || (Password.Text == ""))
                 SingIn.Enabled = false;
         }
+
+        private void SingIn_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

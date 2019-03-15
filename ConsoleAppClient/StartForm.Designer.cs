@@ -67,6 +67,7 @@
             this.SingIn.TabIndex = 4;
             this.SingIn.Text = "Sign in";
             this.SingIn.UseVisualStyleBackColor = true;
+            this.SingIn.Click += new System.EventHandler(this.SingIn_Click);
             // 
             // SignUp
             // 

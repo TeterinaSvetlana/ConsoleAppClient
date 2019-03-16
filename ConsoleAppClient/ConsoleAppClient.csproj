@@ -84,6 +84,24 @@
     <Compile Include="entities\Task.cs" />
     <Compile Include="entities\Team.cs" />
     <Compile Include="entities\User.cs" />
+    <Compile Include="TasksForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TasksForm.Designer.cs">
+      <DependentUpon>TasksForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TeamsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TeamsForm.Designer.cs">
+      <DependentUpon>TeamsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users.Designer.cs">
+      <DependentUpon>Users.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -101,6 +119,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TasksForm.resx">
+      <DependentUpon>TasksForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TeamsForm.resx">
+      <DependentUpon>TeamsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users.resx">
+      <DependentUpon>Users.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

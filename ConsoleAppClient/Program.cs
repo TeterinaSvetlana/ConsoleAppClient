@@ -27,18 +27,31 @@ namespace ConsoleAppClient
         public static async Task<Uri> CreateAsync(User user)
         {
             HttpResponseMessage response = await client.PostAsJsonAsync(
-                "/users", user);
+                "users", user);
             response.EnsureSuccessStatusCode();
 
             // return URI of the created resource.
+            //response.Content.ReadAsAsync<User>();
+            
             return response.Headers.Location;
         }
 
 
         //GET
-        public static async Task<User> GetAsync(string path, User user)
+        public static async Task<User> GetAsync(string path)
         {
-            //User user = null;
+            User user = null;
+
+            //HttpResponseMessage response = client.GetAsync("users").Result;  // Blocking call!    
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    var products = response.Content.ReadAsStringAsync().Result;
+            //}
+            //else
+            //{
+            //    Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            //}
+
             HttpResponseMessage response = await client.GetAsync(path);
             if (response.IsSuccessStatusCode)
             {
@@ -52,7 +65,7 @@ namespace ConsoleAppClient
         static async Task<User> UpdateAsync(User user)
         {
             HttpResponseMessage response = await client.PutAsJsonAsync(
-                $"/users/{user.Username}", user);
+                $"users/{user}", user);
             response.EnsureSuccessStatusCode();
 
             // Deserialize the updated product from the response body.
@@ -65,7 +78,7 @@ namespace ConsoleAppClient
         static async Task<HttpStatusCode> DeleteAsync(string id)
         {
             HttpResponseMessage response = await client.DeleteAsync(
-                $"/users/{id}");
+                $"users/{id}");
             return response.StatusCode;
         }
         static void Main(string[] args)
@@ -75,6 +88,7 @@ namespace ConsoleAppClient
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
+
             RunAsync().GetAwaiter().GetResult();
             Application.Run(new StartForm());
             
@@ -112,7 +126,17 @@ namespace ConsoleAppClient
                 Console.WriteLine($"Created at {url}");
 
                 // Get
-                user = await GetAsync(url.PathAndQuery, user);
+                //user = await GetAsync("https://dist-lab-server.herokuapp.com/users/26");
+
+                HttpResponseMessage response = client.GetAsync("users/26").Result;  // Blocking call!    
+                if (response.IsSuccessStatusCode)
+                {
+                    var u = response.Content.ReadAsStringAsync().Result;
+                }
+                else
+                {
+                    Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                }
                 ShowInfo(user);
 
                 // Update 
@@ -121,7 +145,7 @@ namespace ConsoleAppClient
                 await UpdateAsync(user);
 
                 // Get the updated 
-                user = await GetAsync(url.PathAndQuery, user);
+                user = await GetAsync(url.PathAndQuery);
                 ShowInfo(user);
 
                 // Delete 

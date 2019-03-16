@@ -32,6 +32,20 @@ namespace ConsoleAppClient
             //Program.client
             //var webClient = new WebClient();
             //webClient.QueryString.Add("format", "json");
+
+            //textBoxNameUser.Text = Program.client.response.Content.ReadAsAsync<Сущность>();
+        }
+
+        private void buttonEditUser_Click(object sender, EventArgs e)
+        {
+            Users users = new Users();
+            users.Show();
+        }
+
+        private void buttonNewTeam_Click(object sender, EventArgs e)
+        {
+            TeamsForm teamsForm = new TeamsForm();
+            teamsForm.Show();
         }
     }
 }

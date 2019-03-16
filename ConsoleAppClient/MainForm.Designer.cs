@@ -227,6 +227,7 @@
             this.buttonEditUser.TabIndex = 10;
             this.buttonEditUser.Text = "Edit";
             this.buttonEditUser.UseVisualStyleBackColor = true;
+            this.buttonEditUser.Click += new System.EventHandler(this.buttonEditUser_Click);
             // 
             // buttonDeleteUser
             // 
@@ -271,6 +272,7 @@
             this.buttonNewTeam.TabIndex = 13;
             this.buttonNewTeam.Text = "New";
             this.buttonNewTeam.UseVisualStyleBackColor = true;
+            this.buttonNewTeam.Click += new System.EventHandler(this.buttonNewTeam_Click);
             // 
             // buttonNewProject
             // 
